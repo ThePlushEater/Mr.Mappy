@@ -18,14 +18,148 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.css" />
+    <Content Include="core\css\base.css" />
+    <Content Include="core\css\mr_mappy.css">
+      <DependentUpon>mr_mappy.css.bundle</DependentUpon>
+    </Content>
+    <Content Include="core\css\mr_mappy.min.css">
+      <DependentUpon>mr_mappy.css</DependentUpon>
+    </Content>
+    <Content Include="core\image\addon-calendar.png" />
+    <Content Include="core\image\icon-add-active.png" />
+    <Content Include="core\image\icon-add-inactive.png" />
+    <Content Include="core\image\icon-arrow-active.png" />
+    <Content Include="core\image\icon-arrow-inactive.png" />
+    <Content Include="core\image\icon-data-active.png" />
+    <Content Include="core\image\icon-data-inactive.png" />
+    <Content Include="core\image\icon-info-active.png" />
+    <Content Include="core\image\icon-info-inactive.png" />
+    <Content Include="core\image\icon-layer-active.png" />
+    <Content Include="core\image\icon-layer-inactive.png" />
+    <Content Include="core\image\icon-minus-active.png" />
+    <Content Include="core\image\icon-picture-active.png" />
+    <Content Include="core\image\icon-picture-inactive.png" />
+    <Content Include="core\image\icon-plus-active.png" />
+    <Content Include="core\image\icon-threshold-active.png" />
+    <Content Include="core\image\icon-threshold-inactive.png" />
+    <Content Include="core\image\marker-blank.png" />
+    <Content Include="core\image\marker-dollar.png" />
+    <Content Include="core\image\marker-heart.png" />
+    <Content Include="core\image\marker-new.png" />
+    <Content Include="core\image\marker-shadow.png" />
+    <Content Include="core\js\controller\uploader.js" />
+    <Content Include="core\js\mr_mappy.js">
+      <DependentUpon>mr_mappy.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="core\js\mr_mappy.min.js">
+      <DependentUpon>mr_mappy.js</DependentUpon>
+    </Content>
+    <Content Include="core\js\view\gridformat.js" />
+    <Content Include="core\lib\backbone\backbone.js" />
+    <Content Include="core\lib\backgrid-moment-cell\backgrid-moment-cell.css" />
+    <Content Include="core\lib\backgrid-moment-cell\backgrid-moment-cell.js" />
+    <Content Include="core\lib\backgrid\backgrid.css" />
+    <Content Include="core\lib\backgrid\backgrid.js" />
+    <Content Include="core\lib\bootstrap-datetimepicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="core\lib\bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="core\lib\bootstrap-select\css\bootstrap-select.css" />
+    <Content Include="core\lib\bootstrap-select\js\bootstrap-select.js" />
+    <Content Include="core\lib\bootstrap\css\bootstrap.css" />
+    <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="core\lib\bootstrap\js\bootstrap.js" />
+    <Content Include="core\lib\galleria\galleria-1.4.2.js" />
+    <Content Include="core\lib\galleria\plugins\flickr\flickr-demo.html" />
+    <Content Include="core\lib\galleria\plugins\flickr\flickr-loader.gif" />
+    <Content Include="core\lib\galleria\plugins\flickr\galleria.flickr.js" />
+    <Content Include="core\lib\galleria\plugins\flickr\galleria.flickr.min.js" />
+    <Content Include="core\lib\galleria\plugins\flickr\loader.gif" />
+    <Content Include="core\lib\galleria\plugins\history\galleria.history.js" />
+    <Content Include="core\lib\galleria\plugins\history\galleria.history.min.js" />
+    <Content Include="core\lib\galleria\plugins\history\history-demo.html" />
+    <Content Include="core\lib\galleria\plugins\picasa\galleria.picasa.js" />
+    <Content Include="core\lib\galleria\plugins\picasa\galleria.picasa.min.js" />
+    <Content Include="core\lib\galleria\plugins\picasa\loader.gif" />
+    <Content Include="core\lib\galleria\plugins\picasa\picasa-demo.html" />
+    <Content Include="core\lib\galleria\themes\classic\classic-demo.html" />
+    <Content Include="core\lib\galleria\themes\classic\classic-loader.gif" />
+    <Content Include="core\lib\galleria\themes\classic\classic-map.png" />
+    <Content Include="core\lib\galleria\themes\classic\galleria.classic.css" />
+    <Content Include="core\lib\galleria\themes\classic\galleria.classic.js" />
+    <Content Include="core\lib\galleria\themes\classic\galleria.classic.min.js" />
+    <Content Include="core\lib\jquery-ui-slider-pips\jquery-ui-slider-pips.css" />
+    <Content Include="core\lib\jquery-ui-slider-pips\jquery-ui-slider-pips.js" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="core\lib\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="core\lib\jquery-ui\jquery-ui.css" />
+    <Content Include="core\lib\jquery-ui\jquery-ui.js" />
+    <Content Include="core\lib\jquery\jquery-2.1.3.js" />
+    <Content Include="core\lib\leaflet-boucemarker\leaflet-boucemarker.js" />
+    <Content Include="core\lib\leaflet-textpath\leaflet.textpath.js" />
+    <Content Include="core\lib\leaflet\images\layers.png" />
+    <Content Include="core\lib\leaflet\images\marker-icon.png" />
+    <Content Include="core\lib\leaflet\images\marker-shadow.png" />
+    <Content Include="core\lib\leaflet\leaflet.css" />
+    <Content Include="core\lib\leaflet\leaflet.js" />
+    <Content Include="core\lib\leaflet\leaflet__.js" />
+    <Content Include="core\lib\leaflet\leaflet_.js" />
+    <Content Include="core\lib\libraries.js">
+      <DependentUpon>libraries.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="core\lib\libraries.min.js">
+      <DependentUpon>libraries.js</DependentUpon>
+    </Content>
+    <Content Include="core\lib\momentjs\moment.js" />
+    <Content Include="core\lib\underscore\underscore.js" />
     <Content Include="index.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="core\lib\libraries.js.bundle">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="core\lib\libraries.min.js.map">
+      <DependentUpon>libraries.min.js</DependentUpon>
+    </Content>
+    <Content Include="core\js\mr_mappy.js.bundle">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="core\js\mr_mappy.min.js.map">
+      <DependentUpon>mr_mappy.min.js</DependentUpon>
+    </Content>
+    <Content Include="core\php\give.php" />
+    <Content Include="core\php\gives.php" />
+    <Content Include="core\php\createBend.php" />
+    <Content Include="core\php\database.php" />
+    <Content Include="core\php\item.php" />
+    <Content Include="core\php\items.php" />
+    <Content Include="core\php\picture.php" />
+    <Content Include="core\php\pictures.php">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="core\php\threshold.php" />
+    <Content Include="core\php\thresholds.php" />
+    <Content Include="core\php\upload.php" />
+    <Content Include="core\json\localization.json" />
+    <Content Include="core\json\setting.json" />
+    <Content Include="core\css\mr_mappy.css.bundle" />
+    <Content Include="core\php\layer.php" />
+    <Content Include="core\php\layers.php" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -33,11 +167,46 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="content\picture\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="core\js\controller\app.ts" />
+    <TypeScriptCompile Include="core\js\controller\controller.ts" />
+    <TypeScriptCompile Include="core\js\controller\localization.ts" />
+    <TypeScriptCompile Include="core\js\controller\router.ts" />
+    <TypeScriptCompile Include="core\js\controller\setting.ts" />
+    <TypeScriptCompile Include="core\js\model\give.ts" />
+    <TypeScriptCompile Include="core\js\model\Item.ts" />
+    <TypeScriptCompile Include="core\js\model\layer.ts" />
+    <TypeScriptCompile Include="core\js\model\model.ts" />
+    <TypeScriptCompile Include="core\js\model\picture.ts" />
+    <TypeScriptCompile Include="core\js\view\gallery.ts" />
+    <TypeScriptCompile Include="core\js\view\map.ts" />
+    <TypeScriptCompile Include="core\js\view\mapcontrol.ts" />
+    <TypeScriptCompile Include="core\js\view\markers.ts" />
+    <TypeScriptCompile Include="core\js\view\msg.ts" />
+    <TypeScriptCompile Include="core\js\view\template.ts" />
+    <TypeScriptCompile Include="core\js\view\ui.ts" />
+    <TypeScriptCompile Include="core\js\view\view.ts" />
+    <TypeScriptCompile Include="Scripts\typings\backbone\backbone.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\backgrid\backgrid.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap.v3.datetimepicker\bootstrap.v3.datetimepicker.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\leaflet\leaflet.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>mr.mappy</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
@@ -45,27 +214,22 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50083</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50625/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:50625/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
+    <OutputPath>bin\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
-    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
