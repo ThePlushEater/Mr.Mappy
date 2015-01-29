@@ -188,6 +188,10 @@
     <Content Include="core\php\layer.php" />
     <Content Include="core\php\layers.php" />
     <Content Include="favicons\android-chrome-manifest.json" />
+    <Content Include="image assets\addon-icon.psd" />
+    <Content Include="image assets\control-button-icon.psd" />
+    <Content Include="image assets\favicon.psd" />
+    <Content Include="image assets\marker-icon.psd" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
