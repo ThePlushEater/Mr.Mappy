@@ -286,7 +286,7 @@ module ForagingMap {
                     if (FMC.getSelectedItem() == item) {
                         FMV.getMapView().SetIsMapPanZoomAvailable(false);
                         item.marker.bounce(
-                            { duration: 500, height: 10 },
+                            { duration: 200, height: 10 },
                             function () {
                                 item.marker.setOpacity(FMS.getFullAlpha());
                                 item.circle.setStyle({ fillOpacity: FMS.getActiveAlpha() });
@@ -338,7 +338,7 @@ module ForagingMap {
                     if (value) {
                         FMV.getMapView().getMap().addLayer(that.circleGroups[i]);
                         FMV.getMapView().getMap().addLayer(that.markerGroups[i]);
-                        //FMV.getMapView().getMap().addLayer(that.pathGroups[i]);
+                        //FMV.getMapView().getMap().addLayer(that.pathGroups[i]);           // TODO: Apply path turn on & off together with marker
                     } else {
                         if (FMV.getMapView().getMap().hasLayer(that.circleGroups[i])) {
                             FMV.getMapView().getMap().removeLayer(that.circleGroups[i]);
@@ -346,8 +346,8 @@ module ForagingMap {
                         if (FMV.getMapView().getMap().hasLayer(that.markerGroups[i])) {
                             FMV.getMapView().getMap().removeLayer(that.markerGroups[i]);
                         }
-                        //if (FMV.getMapView().getMap().hasLayer(that.pathGroups[i])) {
-                        //    FMV.getMapView().getMap().removeLayer(that.pathGroups[i]);
+                        //if (FMV.getMapView().getMap().hasLayer(that.pathGroups[i])) {     // TODO: Apply path turn on & off together with marker
+                        //    FMV.getMapView().getMap().removeLayer(that.pathGroups[i]);    // TODO: Apply path turn on & off together with marker
                         //}
                     }
                 }
@@ -365,42 +365,27 @@ module ForagingMap {
             that.hidePaths();
             $.each(FMM.getGives().models, function (index: number, model: Give) {
                 var giver: Item = FMM.getItems().get(model.get("gid"));
-                var giverLatLng = new L.LatLng(parseFloat(giver.get("lat")), parseFloat(giver.get("lng")));
                 var taker: Item = FMM.getItems().get(model.get("tid"));
-                var takerLatLng = new L.LatLng(parseFloat(taker.get("lat")), parseFloat(taker.get("lng")));
-                var i: number = that.getIndexOfMarkerGroups(taker);
-                if (FMV.getMapView().getMap().hasLayer(that.pathGroups[i])) {
-                    if (taker == FMC.getSelectedItem()) {
-                        var line: L.Polyline = new L.Polyline([giverLatLng, takerLatLng], { weight: 4, color: "#34495e", opacity: 0.7 });
-                        line.setText('  ►  ', { repeat: true, attributes: { fill: "#2c3e50", opacity: 1 } });
-                    } else if (giver == FMC.getSelectedItem()) {
-                        var line: L.Polyline = new L.Polyline([giverLatLng, takerLatLng], { weight: 4, color: "#34495e", opacity: 0.3 });
-                        line.setText('  ►  ', { repeat: true, attributes: { fill: "#2c3e50", opacity: 0.5 } });
-                    } else {
-                        var line: L.Polyline = new L.Polyline([giverLatLng, takerLatLng], { weight: 4, color: "#34495e", opacity: 0.075 });
-                        line.setText('  ►  ', { repeat: true, attributes: { fill: "#2c3e50", opacity: 0.075 } });
+                if (giver != null && taker != null) {
+                    var giverLatLng = new L.LatLng(parseFloat(giver.get("lat")), parseFloat(giver.get("lng")));
+                    var takerLatLng = new L.LatLng(parseFloat(taker.get("lat")), parseFloat(taker.get("lng")));
+                    var i: number = that.getIndexOfMarkerGroups(taker);
+                    if (FMV.getMapView().getMap().hasLayer(that.pathGroups[i])) {
+                        if (taker == FMC.getSelectedItem()) {
+                            var line: L.Polyline = new L.Polyline([giverLatLng, takerLatLng], { weight: 4, color: "#34495e", opacity: 0.7 });
+                            line.setText('  ►  ', { repeat: true, attributes: { fill: "#2c3e50", opacity: 1 } });
+                        } else if (giver == FMC.getSelectedItem()) {
+                            var line: L.Polyline = new L.Polyline([giverLatLng, takerLatLng], { weight: 4, color: "#34495e", opacity: 0.3 });
+                            line.setText('  ►  ', { repeat: true, attributes: { fill: "#2c3e50", opacity: 0.5 } });
+                        } else {
+                            var line: L.Polyline = new L.Polyline([giverLatLng, takerLatLng], { weight: 4, color: "#34495e", opacity: 0.075 });
+                            line.setText('  ►  ', { repeat: true, attributes: { fill: "#2c3e50", opacity: 0.075 } });
+                        }
+                        line.addTo(that.pathGroups[i]);
                     }
-                    line.addTo(that.pathGroups[i]);
                 }
+                
             });
         }
-        /*
-        renderLayers: function () {
-            var that = this;
-            $.each(mController.mView.mViewUI.layers, function (index, value) {
-                if (value) {
-                    that.map.addLayer(that.markerGroups[index]);
-                    that.map.addLayer(that.circleGroups[index]);
-                } else {
-                                        arkerGroups[index].eachLayer (function (layer) {
-                        setOpacity (0.5);
-                                                        at.markerGroups[index].hasLayer (that.selectedItem)) {
-                        nactiveMarker ();
-                                                            that.map.removeLayer(that.markerGroups[index]);
-                    that.map.removeLayer(that.circleGroups[index]);
-
-                }
-            });
-        */
     }
 }

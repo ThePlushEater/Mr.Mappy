@@ -127,6 +127,13 @@
                 return this.error;
             }
         }
+        getViewUIAddTypeSelectError(): string {
+            try {
+                return this.data.view.ui.add.typeSelectError;
+            } catch (error) {
+                return this.error;
+            }
+        }
         getViewUIDataHeader(): string {
             try {
                 return this.data.view.ui.data.header;
@@ -144,6 +151,13 @@
         getViewUIDataSaveErrorMsg(): string {
             try {
             return this.data.view.ui.data.saveErrorMsg;
+            } catch (error) {
+                return this.error;
+            }
+        }
+        getViewUIDataDonorNoAccessMsg(): string {
+            try {
+                return this.data.view.ui.data.donorNoAccessMsg;
             } catch (error) {
                 return this.error;
             }

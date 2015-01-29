@@ -112,8 +112,7 @@
     <Content Include="core\lib\leaflet\images\marker-shadow.png" />
     <Content Include="core\lib\leaflet\leaflet.css" />
     <Content Include="core\lib\leaflet\leaflet.js" />
-    <Content Include="core\lib\leaflet\leaflet__.js" />
-    <Content Include="core\lib\leaflet\leaflet_.js" />
+    <Content Include="core\lib\leaflet\leaflet_v_8_0.js" />
     <Content Include="core\lib\libraries.js">
       <DependentUpon>libraries.js.bundle</DependentUpon>
     </Content>

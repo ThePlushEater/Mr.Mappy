@@ -163,6 +163,7 @@ module ForagingMap {
             });
             that.$("#item-info-btn-edit").on("click", function () {
                 if (FMC.getSelectedItem().get("type") == ItemType.None) {
+                    FMV.getMsgView().renderError(FML.getViewUIAddTypeSelectError());
                 } else {
                     FMC.getSelectedItem().setIsRemoved(true);
                     FMV.getMapView().getMarkersView().removeMarker(FMC.getSelectedItem());
@@ -170,8 +171,6 @@ module ForagingMap {
                         {
                             name: that.$("#item-info-name").val(),
                             desc: that.$("#item-info-desc").val(),
-                            lat: that.$("#item-info-lat").val(),
-                            lng: that.$("#item-info-lng").val(),
                         },
                         {
                             success: function (model: Item, response: any) {
@@ -298,28 +297,32 @@ module ForagingMap {
             // save & delete
             that.$("#item-info-btn-edit").on("click", function () {
                 var optionSelected = $("option:selected", that.$('#item-info-type'));
-                FMV.getMapView().getMarkersView().removeMarker(FMC.getSelectedItem());
-                FMC.getSelectedItem().save(
-                    {
-                        id: that.$("#item-info-id").val(),
-                        name: that.$("#item-info-name").val(),
-                        desc: that.$("#item-info-desc").val(),
-                        type: parseInt(optionSelected.attr("data-type")),
-                        sort: parseInt(optionSelected.attr("data-sort")),
-                        amount: that.$("#item-info-amount").val(),
-                        lat: that.$("#item-info-lat").val(),
-                        lng: that.$("#item-info-lng").val(),
-                        //update: that.$("#item-info-date").val(),
-                    },
-                    {
-                        success: function (model: Item, response: any) {
-                            FMV.getMapView().getMarkersView().render();
-                            FMV.getMsgView().renderSuccess("'" + model.get("name") + "' " + FML.getViewUIInfoSaveSuccessMsg());
+                if (parseInt(optionSelected.attr("data-type")) != 0 && parseInt(optionSelected.attr("data-sort")) != 0) {
+                    FMV.getMapView().getMarkersView().removeMarker(FMC.getSelectedItem());
+                    FMC.getSelectedItem().save(
+                        {
+                            id: that.$("#item-info-id").val(),
+                            name: that.$("#item-info-name").val(),
+                            desc: that.$("#item-info-desc").val(),
+                            type: parseInt(optionSelected.attr("data-type")),
+                            sort: parseInt(optionSelected.attr("data-sort")),
+                            amount: that.$("#item-info-amount").val(),
+                            lat: that.$("#item-info-lat").val(),
+                            lng: that.$("#item-info-lng").val(),
                         },
-                        error: function (error) {
-                            FMV.getMsgView().renderError(FML.getViewUIInfoSaveErrorMsg());
-                        },
-                    });
+                        {
+                            success: function (model: Item, response: any) {
+                                FMV.getMapView().getMarkersView().render();
+                                FMV.getMsgView().renderSuccess("'" + model.get("name") + "' " + FML.getViewUIInfoSaveSuccessMsg());
+                            },
+                            error: function (error) {
+                                FMV.getMsgView().renderError(FML.getViewUIInfoSaveErrorMsg());
+                            },
+                        });
+                } else {
+                    FMV.getMsgView().renderError(FML.getViewUIAddTypeSelectError());
+                }
+                
             });
             that.$("#item-info-btn-delete").on("click", function () {
                 var r = confirm(FML.getViewUIInfoDeleteConfirmMsg());
@@ -511,40 +514,49 @@ module ForagingMap {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         renderUIDataLayer(): void {
             var that: UIView = this;
-            var template = _.template(FMViewUIDataTemplate);
-            var data = {
-                "header": FML.getViewUIDataHeader(),
-            };
-            that.$el.html(template(data));
-            // Grid instance for data
-            var items: Items = new Items();
-            items.add(FMM.getItems().where({ type: 2 }));
-            items.add(FMM.getItems().where({ type: 3 }));
-            dataColumn[0].cell = Backgrid.SelectCell.extend({
-                optionValues: items.toArray(),
-            })
-            var gridData = new Backgrid.Grid({
-                columns: dataColumn,
-                collection: new Gives(FMM.getGives().where({tid: FMC.getSelectedItem().get("id")})),
-                emptyText: FML.getViewUIDataNoDataMsg(),
-            });
-            gridData.render();
-            gridData.sort("date", "descending");
-            that.$(".ui-body").append(gridData.el);
-            // Grid instance for adding
-            dataAddColumn[0].cell = Backgrid.SelectCell.extend({
-                optionValues: items.toArray(),
-            })
-            var give: Give = new Give({ tid: FMC.getSelectedItem().get("id"), gid: 0, name: "", desc: "", amount: 0, date: moment(new Date()).format(FMS.getDateTimeFormat()), update: moment(new Date()).format(FMS.getDateTimeFormat()) });
-            give.setIsSavable(false);
-            var gives: Gives = new Gives();
-            gives.add(give);
-            var gridAddData = new Backgrid.Grid({
-                columns: dataAddColumn,
-                collection: gives,
-                emptyText: FML.getViewUIDataNoDataMsg(),
-            });
-            that.$(".ui-body #data-add-panel").append(gridAddData.render().el);
+            
+            if (parseInt(FMC.getSelectedItem().get("type")) != 3) {
+                var template = _.template(FMViewUIDataTemplate);
+                var data = {
+                    "header": FML.getViewUIDataHeader(),
+                };
+                that.$el.html(template(data));
+                // Grid instance for data
+                var items: Items = new Items();
+                items.add(FMM.getItems().where({ type: 2 }));
+                items.add(FMM.getItems().where({ type: 3 }));
+                dataColumn[0].cell = Backgrid.SelectCell.extend({
+                    optionValues: items.toArray(),
+                })
+                var gridData = new Backgrid.Grid({
+                    columns: dataColumn,
+                    collection: new Gives(FMM.getGives().where({ tid: FMC.getSelectedItem().get("id") })),
+                    emptyText: FML.getViewUIDataNoDataMsg(),
+                });
+                gridData.render();
+                gridData.sort("date", "descending");
+                that.$(".ui-body").append(gridData.el);
+                // Grid instance for adding
+                dataAddColumn[0].cell = Backgrid.SelectCell.extend({
+                    optionValues: items.toArray(),
+                })
+                var give: Give = new Give({ tid: FMC.getSelectedItem().get("id"), gid: 0, name: "", desc: "", amount: 0, date: moment(new Date()).format(FMS.getDateTimeFormat()), update: moment(new Date()).format(FMS.getDateTimeFormat()) });
+                give.setIsSavable(false);
+                var gives: Gives = new Gives();
+                gives.add(give);
+                var gridAddData = new Backgrid.Grid({
+                    columns: dataAddColumn,
+                    collection: gives,
+                    emptyText: FML.getViewUIDataNoDataMsg(),
+                });
+                that.$(".ui-body #data-add-panel").append(gridAddData.render().el);
+            } else {    // Donor cannot get donation
+                var template = _.template(FMViewUIDataTemplateDonor);
+                var data = {
+                    "header": FML.getViewUIDataHeader(),
+                };
+                that.$el.html(template(data));
+            }
         }
     }
 }

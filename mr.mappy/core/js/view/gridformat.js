@@ -141,7 +141,7 @@ var DataAddCell = Backgrid.Cell.extend({
                 success: function (model, response) {
                     FMV.getUIView().render();
                     model.setIsSavable(true);
-                    FMV.getMapView().getMarkersView().renderPaths();
+                    FMC.fetchItems(FMV.getMapView().getMapBounds());
                     FMV.getMsgView().renderSuccess("'" + model.get("name") + "' " + FML.getViewUIDataDeleteSuccessMsg());
                 },
                 error: function () {
@@ -189,40 +189,6 @@ var DataDeleteCell = Backgrid.Cell.extend({
                 }
             );
         }
-    },
-    render: function () {
-        $(this.el).html(this.template());
-        this.delegateEvents();
-        return this;
-    }
-});
-
-var ThresholdAddCell = Backgrid.Cell.extend({
-    template: _.template(FMViewUIDataLayerAddTemplate),
-    events: {
-        "click": "addRow"
-    },
-    addRow: function (e) {
-        e.preventDefault();
-        var model = this.model;
-        var collection = this.model.collection;
-        collection.remove(model);
-        FMM.getThresholds().add(model);
-        model.save(
-            //update: moment(new Date()).format(FMS.getDateTimeFormat())
-            {},
-            {
-                success: function (model, response) {
-                    FMV.getUIView().render();
-                    model.setIsSavable(true);
-                    FMV.getMsgView().renderSuccess("'" + model.get("min") + " - " + model.get("max") + "' " + FML.getViewUIDataSaveSuccessMsg());
-                },
-                error: function () {
-                    FMV.getMsgView().renderError(FML.getViewUIDataSaveErrorMsg());
-                },
-            }
-        );
-
     },
     render: function () {
         $(this.el).html(this.template());
@@ -336,66 +302,6 @@ var pictureAddColumn = [
 	    cell: PictureAddCell,
 	}];
 
-
-
-var thresholdColumn = [
-    {
-        name: "min",
-        label: "Min (°)",
-        editable: true,
-        cell: "number" // A cell type for floating point value, defaults to have a precision 2 decimal numbers
-    }, {
-        name: "max",
-        label: "Max (°)",
-        editable: true,
-        cell: "number" // A cell type for floating point value, defaults to have a precision 2 decimal numbers
-    }, {
-        name: "date",
-        label: "Date",
-        editable: true,
-        cell: Backgrid.Cell.extend({ editor: DatePickerCellEditor }),
-    }, {
-        name: "update",
-        label: "Updated",
-        editable: false,
-        cell: Backgrid.Cell.extend({ editor: DatePickerCellEditor }),
-    }, {
-        label: "delete",
-        sortable: false,
-        editable: false,
-        cell: DeleteCell,
-    }
-];
-
-var thresholdAddColumn = [
-    {
-        name: "min",
-        label: "Min (°)",
-        editable: true,
-        cell: "number" // A cell type for floating point value, defaults to have a precision 2 decimal numbers
-    }, {
-        name: "max",
-        label: "Max (°)",
-        editable: true,
-        cell: "number" // A cell type for floating point value, defaults to have a precision 2 decimal numbers
-    }, {
-        name: "date",
-        label: "Date",
-        editable: true,
-        cell: Backgrid.Cell.extend({ editor: DatePickerCellEditor }),
-    }, {
-        name: "update",
-        label: "Updated",
-        editable: false,
-        cell: Backgrid.Cell.extend({ editor: DatePickerCellEditor }),
-    }, {
-        label: "add",
-        sortable: false,
-        editable: false,
-        cell: ThresholdAddCell,
-    }
-];
-
 var layerColumn = [
     {
         name: "type",
@@ -464,7 +370,7 @@ var dataColumn = [
         cell: "string"
     }, {
         name: "amount",
-        label: "Money",
+        label: "Amount ($)",
         editable: true,
         cell: "number"
     }, {
@@ -492,7 +398,7 @@ var dataAddColumn = [
         cell: "string"
     }, {
         name: "amount",
-        label: "Money",
+        label: "Amount ($)",
         editable: true,
         cell: "number"
     }, {

@@ -30,7 +30,7 @@ module ForagingMap {
                     {
                         success: function (model: Give, response: any) {
                             model.isSavable = true;
-                            FMV.getMapView().getMarkersView().renderPaths();
+                            FMC.fetchItems(FMV.getMapView().getMapBounds());
                             FMV.getMsgView().renderSuccess("'" + model.get("name") + "' " + FML.getViewUIDataSaveSuccessMsg());
                         },
                         error: function (error) {

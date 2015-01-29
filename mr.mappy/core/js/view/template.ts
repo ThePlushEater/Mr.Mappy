@@ -59,9 +59,9 @@ FMUIInfoLayerTemplate += '<div class="form-group">';
 FMUIInfoLayerTemplate += '<label for="item-info-type" class="col-xs-3 control-label">Type</label>';
 FMUIInfoLayerTemplate += '<div class="col-xs-9">';
 FMUIInfoLayerTemplate += '<select id="item-info-type" class="selectpicker">';
-FMUIInfoLayerTemplate += '<optgroup label="None">';
-FMUIInfoLayerTemplate += '<option data-type="0" data-sort="0">None</option>';
-FMUIInfoLayerTemplate += '</optgroup>';
+//FMUIInfoLayerTemplate += '<optgroup label="None">';
+//FMUIInfoLayerTemplate += '<option data-type="0" data-sort="0">None</option>';
+//FMUIInfoLayerTemplate += '</optgroup>';
 FMUIInfoLayerTemplate += '<optgroup label="Event">';
 FMUIInfoLayerTemplate += '<% _.each(sort1, function (sort) { %>';
 FMUIInfoLayerTemplate += '<option data-type="1" data-sort="<%= sort.get("id") %>"><%= sort.get("name") %></option>';
@@ -162,9 +162,9 @@ FMUIAddLayerTemplate += '<div class="form-group">';
 FMUIAddLayerTemplate += '<label for="item-info-type" class="col-xs-3 control-label">Type</label>';
 FMUIAddLayerTemplate += '<div class="col-xs-9">';
 FMUIAddLayerTemplate += '<select id="item-info-type" class="selectpicker">';
-//FMUIAddLayerTemplate += '<optgroup label="None">';
-//FMUIAddLayerTemplate += '<option data-type="0" data-sort="0">None</option>';
-//FMUIAddLayerTemplate += '</optgroup>';
+FMUIAddLayerTemplate += '<optgroup label="None">';
+FMUIAddLayerTemplate += '<option data-type="0" data-sort="0">None</option>';
+FMUIAddLayerTemplate += '</optgroup>';
 FMUIAddLayerTemplate += '<optgroup label="Event">';
 FMUIAddLayerTemplate += '<% _.each(sort1, function (sort) { %>';
 FMUIAddLayerTemplate += '<option data-type="1" data-sort="<%= sort.get("id") %>"><%= sort.get("name") %></option>';
@@ -340,3 +340,12 @@ FMViewUIDataTemplate += '<button type="button" data-toggle="collapse" data-targe
 FMViewUIDataTemplate += '<div class="collapse" id="data-add-panel">';
 FMViewUIDataTemplate += '</div>';
 FMViewUIDataTemplate += '</div>';
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var FMViewUIDataTemplateDonor = '';
+FMViewUIDataTemplateDonor += '<div class="ui-header"><%= header %></div>'
+FMViewUIDataTemplateDonor += '<div class="ui-body">';
+FMViewUIDataTemplateDonor += 'Donor cannot get donation from others.';
+FMViewUIDataTemplateDonor += '</div>';
+FMViewUIDataTemplateDonor += '</div>';

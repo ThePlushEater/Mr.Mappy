@@ -113,13 +113,17 @@ module ForagingMap {
             that.$(".control-button.data").on("click", function (event) {
                 if (!FMV.getUIView().getIsLocked()) {
                     if (!$(this).hasClass("data-active")) {     // open ui
-                        if (FMC.hasSelectedItem()) {
-                            that.resetControls();
-                            $(this).addClass("data-active");
-                            FMV.getUIView().show(UIMode.DATA);
-                            FMV.getMapView().resize(true);
-                        } else {                                // close ui
-                            FMV.getMsgView().renderError(FML.getViewUIItemNotSelectedErrorMsg());
+                        if (FMC.hasSelectedItem() && parseInt(FMC.getSelectedItem().get("type")) != 3) {        // Data panel only available when the item is not donor.
+                            if (FMC.hasSelectedItem()) {
+                                that.resetControls();
+                                $(this).addClass("data-active");
+                                FMV.getUIView().show(UIMode.DATA);
+                                FMV.getMapView().resize(true);
+                            } else {                                // close ui
+                                FMV.getMsgView().renderError(FML.getViewUIItemNotSelectedErrorMsg());
+                            }
+                        } else {
+                            FMV.getMsgView().renderError(FML.getViewUIDataDonorNoAccessMsg());
                         }
                     } else {
                         $(this).removeClass("data-active");

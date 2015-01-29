@@ -75,6 +75,83 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
             
+            
+            // calculate amount
+            $sql = "SELECT * FROM `mp_give` WHERE `tid` = :tid";
+            $params = array(
+                "tid" => $data->{'tid'},
+            );
+            try {
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+                $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                $amount = 0;
+                foreach ($rows as $row) {
+                    $amount += $row->amount;
+                }
+                
+                // update amount in item
+                $sql = "UPDATE `mp_item` SET `amount` = :amount WHERE `id` = :id";
+                $params = array(
+                    "id" => $data->{'tid'},
+                    "amount" => $amount,
+                );
+                try {
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute($params);
+                    //$result = $stmt->fetchAll(PDO::FETCH_OBJ);
+                } catch(PDOException $e) {
+                    echo '{"error":{"text":'. $e->getMessage() .'}}';
+                }
+                
+            } catch(PDOException $e) {
+                echo '{"error":{"text":'. $e->getMessage() .'}}';
+            }
+            
+            
+            // get type number of giver
+            $sql = "SELECT * FROM `mp_item` WHERE `id` = :id";
+            $params = array(
+                "id" => $data->{'gid'},
+            );
+            try {
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+                $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $type = 0;
+                foreach ($rows as $row) {
+                    $type = $row->type;
+                }
+                if ($type == 3) {
+                    $sql = "SELECT * FROM `mp_give` WHERE `gid` = :gid";
+                    $params = array(
+                        "gid" => $data->{'gid'},
+                    );
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute($params);
+                    $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                    $amount = 0;
+                    foreach ($rows as $row) {
+                        $amount += $row->amount;
+                    }
+                    // update amount in item
+                    $sql = "UPDATE `mp_item` SET `amount` = :amount WHERE `id` = :id";
+                    $params = array(
+                        "id" => $data->{'gid'},
+                        "amount" => $amount,
+                    );
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute($params);
+                }
+            } catch(PDOException $e) {
+                echo '{"error":{"text":'. $e->getMessage() .'}}';
+            }
+            
+            
+            
+            //return current give info
             $sql = "SELECT * FROM `mp_give` WHERE (`id` = :id)";
             $params = array(
                 "id" => $data->{'id'},
@@ -128,10 +205,85 @@
             $pdo = getConnection();
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
+            $lastId = $pdo->lastInsertId();
+            
+            // calculate amount
+            $sql = "SELECT * FROM `mp_give` WHERE `tid` = :tid";
+            $params = array(
+                "tid" => $data->{'tid'},
+            );
+            try {
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+                $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                $amount = 0;
+                foreach ($rows as $row) {
+                    $amount += $row->amount;
+                }
+                
+                // update amount in item
+                $sql = "UPDATE `mp_item` SET `amount` = :amount WHERE `id` = :id";
+                $params = array(
+                    "id" => $data->{'tid'},
+                    "amount" => $amount,
+                );
+                try {
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute($params);
+                    //$result = $stmt->fetchAll(PDO::FETCH_OBJ);
+                } catch(PDOException $e) {
+                    echo '{"error":{"text":'. $e->getMessage() .'}}';
+                }
+                
+            } catch(PDOException $e) {
+                echo '{"error":{"text":'. $e->getMessage() .'}}';
+            }
+            
+            
+            // get type number of giver
+            $sql = "SELECT * FROM `mp_item` WHERE `id` = :id";
+            $params = array(
+                "id" => $data->{'gid'},
+            );
+            try {
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+                $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $type = 0;
+                foreach ($rows as $row) {
+                    $type = $row->type;
+                }
+                if ($type == 3) {
+                    $sql = "SELECT * FROM `mp_give` WHERE `gid` = :gid";
+                    $params = array(
+                        "gid" => $data->{'gid'},
+                    );
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute($params);
+                    $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                    $amount = 0;
+                    foreach ($rows as $row) {
+                        $amount += $row->amount;
+                    }
+                    // update amount in item
+                    $sql = "UPDATE `mp_item` SET `amount` = :amount WHERE `id` = :id";
+                    $params = array(
+                        "id" => $data->{'gid'},
+                        "amount" => $amount,
+                    );
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute($params);
+                }
+            } catch(PDOException $e) {
+                echo '{"error":{"text":'. $e->getMessage() .'}}';
+            }
+            
             
             $sql = "SELECT * FROM `mp_give` WHERE `id` = :id";
             $params = array(
-                "id" => $pdo->lastInsertId(),
+                "id" => $lastId,
             );
             try {
                 $stmt = $pdo->prepare($sql);

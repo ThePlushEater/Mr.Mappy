@@ -29,7 +29,8 @@
                     "deleteErrorMsg": "Failed to delete item."
                 },
                 "add": {
-                    "header": "Add New Item"
+                    "header": "Add New Item",
+                    "typeSelectError":  "Please select the type of Item."
                 },
                 "data": {
                     "header": "Data Control",
@@ -38,6 +39,7 @@
                     "deleteConfirmMsg": "Are you sure to delete this data?",
                     "deleteSuccessMsg": "is successfully deleted.",
                     "deleteErrorMsg": "Failed to delete data.",
+                    "donorNoAccessMsg": "Donor cannot get donation from others.",
                     "noDataMsg": "No Data"
                 },
                 "picture": {

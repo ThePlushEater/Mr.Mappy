@@ -143,6 +143,48 @@
             $pdo = getConnection();
             $stmt = $pdo->prepare($sql);
             $result = $stmt->execute($params);
+            
+            // get taker data & re-calculate amount of taker
+            $sql = "SELECT * FROM `mp_give` WHERE `gid` = :gid";
+            $params = array(
+                "gid" => $data->{'id'},
+            );
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($params);
+            $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+            
+            foreach ($rows as $row) {
+                $tid = $row->tid;
+                $cut = $row->amount;
+                $sql = "SELECT * FROM `mp_item` WHERE `id` = :id";
+                $params = array(
+                    "id" => $tid,
+                );
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+                $item = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $amount = $item[0]->amount - $cut;
+                
+                // update item
+                $sql = "UPDATE `mp_item` SET `amount` = :amount WHERE `id` = :id";
+                $params = array(
+                    "id" => $tid,
+                    "amount" => $amount,
+                );
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+            }
+                
+            // delete give data
+            $sql = "DELETE FROM `mp_give` WHERE `gid` = :gid";
+            $params = array(
+                "gid" => $data->{'id'},
+            );
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($params);
+            
+            
+            
             $pdo = null;
             echo json_encode($result);
         } catch(PDOException $e) {
