@@ -23,7 +23,7 @@ var ForagingMap;
             this.defaults = {
                 "name": "",
                 "desc": "",
-                "type": 0 /* None */,
+                "type": 0,
                 "sort": 0,
                 "amount": 0,
                 "lat": 0,
