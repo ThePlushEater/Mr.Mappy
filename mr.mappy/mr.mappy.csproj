@@ -18,6 +18,9 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="content\picture\TestPicture1.JPG" />
+    <Content Include="content\picture\TestPicture2.JPG" />
+    <Content Include="content\picture\TestPicture3.JPG" />
     <Content Include="core\css\base.css" />
     <Content Include="core\css\mr_mappy.css">
       <DependentUpon>mr_mappy.css.bundle</DependentUpon>
@@ -36,6 +39,8 @@
     <Content Include="core\image\icon-info-inactive.png" />
     <Content Include="core\image\icon-layer-active.png" />
     <Content Include="core\image\icon-layer-inactive.png" />
+    <Content Include="core\image\icon-list-active.png" />
+    <Content Include="core\image\icon-list-inactive.png" />
     <Content Include="core\image\icon-minus-active.png" />
     <Content Include="core\image\icon-picture-active.png" />
     <Content Include="core\image\icon-picture-inactive.png" />
@@ -179,8 +184,6 @@
     <Content Include="core\php\pictures.php">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="core\php\threshold.php" />
-    <Content Include="core\php\thresholds.php" />
     <Content Include="core\php\upload.php" />
     <Content Include="core\json\localization.json" />
     <Content Include="core\json\setting.json" />
@@ -192,6 +195,7 @@
     <Content Include="image assets\control-button-icon.psd" />
     <Content Include="image assets\favicon.psd" />
     <Content Include="image assets\marker-icon.psd" />
+    <Content Include="core\php\calcAmount.php" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -199,9 +203,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="content\picture\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="core\js\controller\app.ts" />
     <TypeScriptCompile Include="core\js\controller\controller.ts" />
