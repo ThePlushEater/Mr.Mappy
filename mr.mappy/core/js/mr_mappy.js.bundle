@@ -28,23 +28,13 @@
     <file>/core/js/view/msg.js</file>
     <file>/core/js/view/mapcontrol.js</file>
     <file>/core/js/view/gallery.js</file>
-    <!--
-    
-    
-    
-    
-    <file>/core/js/view/slider.js</file>
-    -->
+
 
     <file>/core/js/model/model.js</file>
     <file>/core/js/model/item.js</file>
     <file>/core/js/model/layer.js</file>
     <file>/core/js/model/picture.js</file>
     <file>/core/js/model/give.js</file>
-    <!--
-    
-    
-    <file>/core/js/model/threshold.js</file>
-    -->
+
   </files>
 </bundle>
