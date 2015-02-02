@@ -3,7 +3,6 @@
     initialize: function () {
         Backgrid.InputCellEditor.prototype.initialize.apply(this, arguments);
         var input = this;
-        //$(input.el).attr({ "type": "date" });
         $(this.el).datetimepicker({
             defaultDate: input.model.get("date"),
             format: FMS.getDateTimeFormat(),

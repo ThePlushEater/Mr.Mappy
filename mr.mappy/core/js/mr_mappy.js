@@ -70,7 +70,7 @@ var ForagingMap;
                 remove: false,
                 processData: true,
                 success: function (collection, response, options) {
-                    console.log("success fetch with " + collection.models.length + " layers");
+                    //console.log("success fetch with " + collection.models.length + " layers");
                     // render view
                     FMV.render();
                     // start routing
@@ -92,7 +92,7 @@ var ForagingMap;
                     east: bounds.getSouthEast().lng,
                 },
                 success: function (collection, response, options) {
-                    console.log("success fetch with " + collection.models.length + " items");
+                    //console.log("success fetch with " + collection.models.length + " items");
                     FMV.getMapView().getMarkersView().render();
                     that.fetchGives(FMM.getItems().getIdsToString());
                     /*
@@ -132,7 +132,7 @@ var ForagingMap;
                     pid: pid,
                 },
                 success: function (collection, response, options) {
-                    console.log("success fetch with " + collection.models.length + " pictures");
+                    //console.log("success fetch with " + collection.models.length + " pictures");
                 },
                 error: function (collection, jqxhr, options) {
                 }
@@ -147,7 +147,7 @@ var ForagingMap;
                     pids: pids,
                 },
                 success: function (collection, response, options) {
-                    console.log("success fetch with " + collection.models.length + " gives");
+                    //console.log("success fetch with " + collection.models.length + " gives");
                     FMV.getMapView().getMarkersView().renderPaths();
                     if (!FMV.getMapView().getMarkersView().getIsSelectable()) {
                         FMV.getMapView().getMarkersView().setIsSelectable(true);
@@ -185,11 +185,11 @@ var ForagingMap;
         Router.prototype.initialize = function () {
         };
         Router.prototype.home = function () {
-            console.log("we have loaded the home page");
+            //console.log("we have loaded the home page");
             this.navigate("map/" + FMS.getDefaultZoom() + "/" + FMS.getDefaultLat() + "/" + FMS.getDefaultLng(), { trigger: true, replace: true });
         };
         Router.prototype.map = function (zoom, lat, lng) {
-            console.log("we have loaded the map page with zoom: " + zoom + " | lat: " + lat + " | lng: " + lng);
+            //console.log("we have loaded the map page with zoom: " + zoom + " | lat: " + lat + " | lng: " + lng);
             FMV.getMapView().renderMap(lat, lng, zoom);
         };
         return Router;
@@ -1065,7 +1065,6 @@ var DatePickerCellEditor = Backgrid.InputCellEditor.extend({
     initialize: function () {
         Backgrid.InputCellEditor.prototype.initialize.apply(this, arguments);
         var input = this;
-        //$(input.el).attr({ "type": "date" });
         $(this.el).datetimepicker({
             defaultDate: input.model.get("date"),
             format: FMS.getDateTimeFormat(),
@@ -2248,7 +2247,7 @@ var ForagingMap;
             $.each(FMM.getItems().models, function (index, item) {
                 if (!item.getIsRemoved()) {
                     if (item.marker == null && item.circle == null) {
-                        console.log("create new marker with type: " + (item.get("type")));
+                        //console.log("create new marker with type: " + (item.get("type")));
                         if (item.get("type") == 0 /* None */) {
                             item.marker = new L.Marker(new L.LatLng(parseFloat(item.get("lat")), parseFloat(item.get("lng"))), {
                                 icon: that.iconNew,
@@ -3174,6 +3173,22 @@ var ForagingMap;
                 "date": moment(new Date()).format(FMS.getDateTimeFormat()),
                 "update": moment(new Date()).format(FMS.getDateTimeFormat()),
             };
+            that.off("change");
+            that.on("change", function (model, options) {
+                if (that.isSavable == false)
+                    return;
+                that.isSavable = false;
+                model.save({}, {
+                    success: function (model, response) {
+                        model.isSavable = true;
+                        //FMC.fetchItems(FMV.getMapView().getMapBounds());
+                        FMV.getMsgView().renderSuccess("'" + model.get("name") + "' " + FML.getViewUIDataSaveSuccessMsg());
+                    },
+                    error: function (error) {
+                        FMV.getMsgView().renderError(FML.getViewUIInfoSaveErrorMsg());
+                    },
+                });
+            });
         }
         Picture.prototype.parse = function (response, options) {
             if (response.id != null) {

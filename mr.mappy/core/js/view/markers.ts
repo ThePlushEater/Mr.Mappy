@@ -88,7 +88,7 @@ module ForagingMap {
             $.each(FMM.getItems().models, function (index: number, item: ForagingMap.Item) {
                 if (!item.getIsRemoved()) {
                     if (item.marker == null && item.circle == null) {                               // create new marker
-                        console.log("create new marker with type: " + (item.get("type")));
+                        //console.log("create new marker with type: " + (item.get("type")));
                         if (item.get("type") == ItemType.None) {
                             item.marker = new L.Marker(new L.LatLng(parseFloat(item.get("lat")), parseFloat(item.get("lng"))), {
                                 icon: that.iconNew,

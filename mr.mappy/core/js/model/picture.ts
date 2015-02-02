@@ -18,7 +18,24 @@ module ForagingMap {
                 "date": moment(new Date()).format(FMS.getDateTimeFormat()),
                 "update": moment(new Date()).format(FMS.getDateTimeFormat()),
             };
-
+            that.off("change");
+            that.on("change", function (model, options) {
+                if (that.isSavable == false) return;
+                that.isSavable = false;
+                model.save(
+                    {},
+                    {
+                        success: function (model: Give, response: any) {
+                            model.isSavable = true;
+                            //FMC.fetchItems(FMV.getMapView().getMapBounds());
+                            FMV.getMsgView().renderSuccess("'" + model.get("name") + "' " + FML.getViewUIDataSaveSuccessMsg());
+                        },
+                        error: function (error) {
+                            FMV.getMsgView().renderError(FML.getViewUIInfoSaveErrorMsg());
+                        },
+                    }
+                    );
+            });
         }
         parse(response: any, options?: any): any {
             if (response.id != null) {
