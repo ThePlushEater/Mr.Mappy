@@ -56,7 +56,7 @@ var ForagingMap;
         Controller.prototype.addKeyEventListener = function () {
             $(document).keyup(function (e) {
                 if (e.keyCode == 27) {
-                    if (FMV.getUIView().getMode() != 1 /* ADD */) {
+                    if (FMV.getUIView().getMode() != UIMode.ADD) {
                         FMV.getUIView().hide();
                         FMV.getMapView().resize(false);
                         FMV.getMapView().getMarkersView().inactiveMarkers();
@@ -109,7 +109,7 @@ var ForagingMap;
             var item = new ForagingMap.Item({
                 name: "New Item",
                 desc: "",
-                type: 0 /* None */,
+                type: ItemType.None,
                 sort: 0,
                 amount: 0,
                 lat: FMV.getMapView().getMap().getCenter().lat,
