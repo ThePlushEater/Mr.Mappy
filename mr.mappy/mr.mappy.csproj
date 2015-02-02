@@ -18,13 +18,10 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="content\picture\TestPicture1.JPG" />
+    <Content Include="content\picture\TestPicture2.JPG" />
+    <Content Include="content\picture\TestPicture3.JPG" />
     <Content Include="core\css\base.css" />
-    <Content Include="core\css\mr_mappy.css">
-      <DependentUpon>mr_mappy.css.bundle</DependentUpon>
-    </Content>
-    <Content Include="core\css\mr_mappy.min.css">
-      <DependentUpon>mr_mappy.css</DependentUpon>
-    </Content>
     <Content Include="core\image\addon-calendar.png" />
     <Content Include="core\image\icon-add-active.png" />
     <Content Include="core\image\icon-add-inactive.png" />
@@ -36,6 +33,8 @@
     <Content Include="core\image\icon-info-inactive.png" />
     <Content Include="core\image\icon-layer-active.png" />
     <Content Include="core\image\icon-layer-inactive.png" />
+    <Content Include="core\image\icon-list-active.png" />
+    <Content Include="core\image\icon-list-inactive.png" />
     <Content Include="core\image\icon-minus-active.png" />
     <Content Include="core\image\icon-picture-active.png" />
     <Content Include="core\image\icon-picture-inactive.png" />
@@ -47,14 +46,26 @@
     <Content Include="core\image\marker-heart.png" />
     <Content Include="core\image\marker-new.png" />
     <Content Include="core\image\marker-shadow.png" />
+    <Content Include="core\js\controller\app.js" />
+    <Content Include="core\js\controller\controller.js" />
+    <Content Include="core\js\controller\localization.js" />
+    <Content Include="core\js\controller\router.js" />
+    <Content Include="core\js\controller\setting.js" />
     <Content Include="core\js\controller\uploader.js" />
-    <Content Include="core\js\mr_mappy.js">
-      <DependentUpon>mr_mappy.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="core\js\mr_mappy.min.js">
-      <DependentUpon>mr_mappy.js</DependentUpon>
-    </Content>
+    <Content Include="core\js\model\give.js" />
+    <Content Include="core\js\model\Item.js" />
+    <Content Include="core\js\model\layer.js" />
+    <Content Include="core\js\model\model.js" />
+    <Content Include="core\js\model\picture.js" />
+    <Content Include="core\js\view\gallery.js" />
     <Content Include="core\js\view\gridformat.js" />
+    <Content Include="core\js\view\map.js" />
+    <Content Include="core\js\view\mapcontrol.js" />
+    <Content Include="core\js\view\markers.js" />
+    <Content Include="core\js\view\msg.js" />
+    <Content Include="core\js\view\template.js" />
+    <Content Include="core\js\view\ui.js" />
+    <Content Include="core\js\view\view.js" />
     <Content Include="core\lib\backbone\backbone.js" />
     <Content Include="core\lib\backgrid-moment-cell\backgrid-moment-cell.css" />
     <Content Include="core\lib\backgrid-moment-cell\backgrid-moment-cell.js" />
@@ -113,12 +124,6 @@
     <Content Include="core\lib\leaflet\leaflet.css" />
     <Content Include="core\lib\leaflet\leaflet.js" />
     <Content Include="core\lib\leaflet\leaflet_v_8_0.js" />
-    <Content Include="core\lib\libraries.js">
-      <DependentUpon>libraries.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="core\lib\libraries.min.js">
-      <DependentUpon>libraries.js</DependentUpon>
-    </Content>
     <Content Include="core\lib\momentjs\moment.js" />
     <Content Include="core\lib\underscore\underscore.js" />
     <Content Include="favicons\android-chrome-144x144.png" />
@@ -157,18 +162,6 @@
     <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="core\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="core\lib\libraries.js.bundle">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="core\lib\libraries.min.js.map">
-      <DependentUpon>libraries.min.js</DependentUpon>
-    </Content>
-    <Content Include="core\js\mr_mappy.js.bundle">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="core\js\mr_mappy.min.js.map">
-      <DependentUpon>mr_mappy.min.js</DependentUpon>
-    </Content>
     <Content Include="core\php\give.php" />
     <Content Include="core\php\gives.php" />
     <Content Include="core\php\createBend.php" />
@@ -184,7 +177,6 @@
     <Content Include="core\php\upload.php" />
     <Content Include="core\json\localization.json" />
     <Content Include="core\json\setting.json" />
-    <Content Include="core\css\mr_mappy.css.bundle" />
     <Content Include="core\php\layer.php" />
     <Content Include="core\php\layers.php" />
     <Content Include="favicons\android-chrome-manifest.json" />
@@ -199,38 +191,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="content\picture\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="core\js\controller\app.ts" />
-    <TypeScriptCompile Include="core\js\controller\controller.ts" />
-    <TypeScriptCompile Include="core\js\controller\localization.ts" />
-    <TypeScriptCompile Include="core\js\controller\router.ts" />
-    <TypeScriptCompile Include="core\js\controller\setting.ts" />
-    <TypeScriptCompile Include="core\js\model\give.ts" />
-    <TypeScriptCompile Include="core\js\model\Item.ts" />
-    <TypeScriptCompile Include="core\js\model\layer.ts" />
-    <TypeScriptCompile Include="core\js\model\model.ts" />
-    <TypeScriptCompile Include="core\js\model\picture.ts" />
-    <TypeScriptCompile Include="core\js\view\gallery.ts" />
-    <TypeScriptCompile Include="core\js\view\map.ts" />
-    <TypeScriptCompile Include="core\js\view\mapcontrol.ts" />
-    <TypeScriptCompile Include="core\js\view\markers.ts" />
-    <TypeScriptCompile Include="core\js\view\msg.ts" />
-    <TypeScriptCompile Include="core\js\view\template.ts" />
-    <TypeScriptCompile Include="core\js\view\ui.ts" />
-    <TypeScriptCompile Include="core\js\view\view.ts" />
-    <TypeScriptCompile Include="Scripts\typings\backbone\backbone.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\backgrid\backgrid.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\bootstrap.v3.datetimepicker\bootstrap.v3.datetimepicker.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\leaflet\leaflet.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
