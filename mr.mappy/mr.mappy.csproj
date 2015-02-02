@@ -126,6 +126,7 @@
     </Content>
     <Content Include="core\lib\momentjs\moment.js" />
     <Content Include="core\lib\underscore\underscore.js" />
+    <Content Include="core\php\_mappy.sql" />
     <Content Include="favicons\android-chrome-144x144.png" />
     <Content Include="favicons\android-chrome-192x192.png" />
     <Content Include="favicons\android-chrome-36x36.png" />
@@ -196,6 +197,8 @@
     <Content Include="image assets\favicon.psd" />
     <Content Include="image assets\marker-icon.psd" />
     <Content Include="core\php\calcAmount.php" />
+    <Content Include="core\php\_createdatabase.php" />
+    <Content Include="core\php\_dropdatabase.php" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
