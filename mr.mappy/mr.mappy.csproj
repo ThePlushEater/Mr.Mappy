@@ -156,6 +156,7 @@
     <Content Include="favicons\mstile-310x310.png" />
     <Content Include="favicons\mstile-70x70.png" />
     <Content Include="index.html" />
+    <Content Include="mr_mappy_diagram.jpg" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
