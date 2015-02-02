@@ -1,8 +1,3 @@
-/// <reference path="..\..\..\Scripts\typings\jquery\jquery.d.ts" />
-/// <reference path="controller.ts" />
-/// <reference path="router.ts" />
-/// <reference path="setting.ts" />
-/// <reference path="localization.ts" />
 var FMC;
 var FMS;
 var FML;

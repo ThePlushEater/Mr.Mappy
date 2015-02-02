@@ -4,7 +4,6 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-/// <reference path="..\..\..\Scripts\typings\backbone\backbone.d.ts" />
 var ForagingMap;
 (function (ForagingMap) {
     var Router = (function (_super) {

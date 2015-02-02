@@ -1,7 +1,3 @@
-/// <reference path="..\..\..\Scripts\typings\jquery\jquery.d.ts" />
-/// <reference path="..\..\..\Scripts\typings\leaflet\leaflet.d.ts" />
-/// <reference path="router.ts" />
-/// <reference path="..\view\view.ts" />
 var ForagingMap;
 (function (ForagingMap) {
     var Controller = (function () {

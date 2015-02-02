@@ -172,8 +172,6 @@
     <Content Include="core\php\pictures.php">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="core\php\threshold.php" />
-    <Content Include="core\php\thresholds.php" />
     <Content Include="core\php\upload.php" />
     <Content Include="core\json\localization.json" />
     <Content Include="core\json\setting.json" />
@@ -184,6 +182,7 @@
     <Content Include="image assets\control-button-icon.psd" />
     <Content Include="image assets\favicon.psd" />
     <Content Include="image assets\marker-icon.psd" />
+    <Content Include="core\php\calcAmount.php" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
