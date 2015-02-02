@@ -53,6 +53,7 @@
     <Content Include="core\js\controller\setting.js" />
     <Content Include="core\js\controller\uploader.js" />
     <Content Include="core\js\model\give.js" />
+    <Content Include="core\js\model\item.js" />
     <Content Include="core\js\model\layer.js" />
     <Content Include="core\js\model\model.js" />
     <Content Include="core\js\model\picture.js" />
